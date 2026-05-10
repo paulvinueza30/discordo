@@ -69,6 +69,7 @@ type PickerKeybinds struct {
 
 type GuildsTreeKeybinds struct {
 	NavigationKeybinds
+	ScrollKeybinds
 	SelectCurrent Keybind `toml:"select_current"`
 	YankID        Keybind `toml:"yank_id"`
 
@@ -159,8 +160,14 @@ func defaultNavigationKeybinds() NavigationKeybinds {
 func defaultGuildsTreeKeybinds() GuildsTreeKeybinds {
 	return GuildsTreeKeybinds{
 		NavigationKeybinds: defaultNavigationKeybinds(),
-		SelectCurrent:      newKeybind("enter", "select"),
-		YankID:             newKeybind("i", "copy id"),
+		ScrollKeybinds: ScrollKeybinds{
+			ScrollUp:     newKeybind("K", "scroll up"),
+			ScrollDown:   newKeybind("J", "scroll down"),
+			ScrollTop:    newKeybind("home", "scroll top"),
+			ScrollBottom: newKeybind("end", "scroll bottom"),
+		},
+		SelectCurrent: newKeybind("enter", "select"),
+		YankID:        newKeybind("i", "copy id"),
 
 		CollapseAll:        newKeybind("_", "collapse all"),
 		CollapseParentNode: newKeybind("-", "collapse parent"),
